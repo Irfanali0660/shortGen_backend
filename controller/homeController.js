@@ -5,6 +5,7 @@ const urlModel = require('../model/urlModel');
 module.exports={
     shorturl:(req,res,next)=>{
         try {
+            let api={}
             const linkRegex = /^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/g;
             if(linkRegex.test(req.body.shortUrl)){
                 const uid = new ShortUniqueId();
@@ -17,11 +18,14 @@ module.exports={
                 shortUrl:uuid
             })
             newurl.save().then((data)=>{
-                console.log(data,'data');
-                res.json(data)
+                api.data=data
+                api.status="success"
+                res.json(api)
             })
             }else{
-                console.log("invaid link");
+                api.status="error"
+                api.message="Please enter valid email"
+                res.json(api)
             }
         } catch (error) {
             next(error)
