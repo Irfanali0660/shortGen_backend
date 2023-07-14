@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGO_URL).then(()=>{
   })
 
 const corsoptions = {
-    origin: 'http://shortgen.irfanali.club',
+    origin: 'https://shortgen.irfanali.club',
     methods: 'GET, POST, PUT ,DELETE,PATCH',
     allowedHeaders: 'Content-Type, Authorization',
     optionsSuccessStatus: 200
